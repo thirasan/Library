@@ -1,21 +1,136 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
+import React, { Component, PropTypes } from 'react';
+import shallowEqualArrays from 'shallow-equal/arrays';
+import Autowhatever from 'react-autowhatever';
+import { defaultTheme, mapToAutowhateverTheme } from './theme';
+import ReactDOM from 'react-dom';
+import Autosuggest from 'react-autosuggest';
 
-class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h2>Welcome to React</h2>
-        </div>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+const languages = [
+  {
+    name: 'C',
+    year: 1972
+  },
+  {
+    name: 'C#',
+    year: 2000
+  },
+  {
+    name: 'C++',
+    year: 1983
+  },
+  {
+    name: 'Java',
+    year: 1995
+  },
+  {
+    name: 'Javascript',
+    year: 1995
+  },
+  {
+    name: 'PHP',
+    year: 1995
+  },
+  {
+    name: 'Python',
+    year: 1991
+  },
+  {
+    name: 'Ruby',
+    year: 1995
+  },
+  {
+    name: 'Software',
+    year: 2003
+  },
+  {
+    name: 'However',
+    year: 2003
+  },
+  {
+    name: 'Libraly',
+    year: 2003
+  }
+];
+
+// https://developer.mozilla.org/en/docs/Web/JavaScript/Guide/Regular_Expressions#Using_Special_Characters
+const escapeRegexCharacters = str => str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+
+const getSuggestions = value => {
+  const escapedValue = escapeRegexCharacters(value.trim());
+  
+  if (escapedValue === '') {
+    return [];
+  }
+
+  const regex = new RegExp('^' + escapedValue, 'i');
+
+  return languages.filter(language => regex.test(language.name));
+}
+
+const getSuggestionValue = suggestion => suggestion.name;
+
+const renderSuggestion = suggestion => suggestion.name;
+
+const renderSuggestionsContainer = ({ containerProps, children, query }) => (
+  <div {...containerProps}>
+    {children}
+    {
+      <div className="footer">
+        Press Enter to search <strong>{query}</strong>
       </div>
+    }
+  </div>
+);
+
+class App extends React.Component {
+  constructor() {
+    super();
+
+    this.state = {
+      value: '',
+      suggestions: []
+    };    
+  }
+
+  onChange = (event, { newValue, method }) => {
+    this.setState({
+      value: newValue
+    });
+  };
+  
+  onSuggestionsFetchRequested = ({ value }) => {
+    this.setState({
+      suggestions: getSuggestions(value)
+    });
+  };
+
+  onSuggestionsClearRequested = () => {
+    this.setState({
+      suggestions: []
+    });
+  };
+
+  render() {
+    const { value, suggestions } = this.state;
+    const inputProps = {
+      placeholder: "Fill in the blank",
+      value,
+      onChange: this.onChange
+    };
+
+    return (
+      <Autosuggest 
+        suggestions={suggestions}
+        onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
+        onSuggestionsClearRequested={this.onSuggestionsClearRequested}
+        getSuggestionValue={getSuggestionValue}
+        renderSuggestion={renderSuggestion}
+        inputProps={inputProps}
+        renderSuggestionsContainer={renderSuggestionsContainer} />
     );
   }
 }
 
-export default App;
+ReactDOM.render(<App />, document.getElementById('app'));
+
