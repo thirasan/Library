@@ -6,6 +6,9 @@
     "react-scripts": "0.8.4"
   },
   "dependencies": {
+    "body-parser": "^1.17.1",
+    "express": "^4.15.2",
+    "express-stormpath": "^3.2.0",
     "react": "^15.4.2",
     "react-autosuggest": "^9.0.0",
     "react-dom": "^15.4.2"
@@ -15,5 +18,18 @@
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
-  }
+  },
+  "description": "This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thirasan/find_doctor.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/thirasan/find_doctor/issues"
+  },
+  "homepage": "https://github.com/thirasan/find_doctor#readme"
 }

@@ -5,6 +5,7 @@ import Autowhatever from 'react-autowhatever';
 import { defaultTheme, mapToAutowhateverTheme } from './theme';
 import ReactDOM from 'react-dom';
 import Autosuggest from 'react-autosuggest';
+import axios from 'axios'
 
 const languages = [
   {
@@ -82,6 +83,25 @@ const renderSuggestionsContainer = ({ containerProps, children, query }) => (
     }
   </div>
 );
+let Search = React.createClass({
+  handleClick() {
+    const ele = document.getElementById("abc")
+    axios.post('http://localhost:3943/', {
+    firstName: this.props.value,
+    lastName: 'Flintstone'
+    }).then(res => res.data).then((data) => {
+        ele.innerHTML = data[0].Surename;
+    }),
+    axios.get('http://localhost:3943/');
+  },
+  render: function() {
+      return (
+          <button onClick={(e) => this.handleClick(e)}>
+              Search
+          </button>
+      );
+  }
+});
 
 class App extends React.Component {
   constructor() {
@@ -116,10 +136,12 @@ class App extends React.Component {
     const inputProps = {
       placeholder: "Fill in the blank",
       value,
-      onChange: this.onChange
+      onChange: this.onChange,
+      
     };
 
     return (
+      <header>
       <Autosuggest 
         suggestions={suggestions}
         onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
@@ -127,8 +149,13 @@ class App extends React.Component {
         getSuggestionValue={getSuggestionValue}
         renderSuggestion={renderSuggestion}
         inputProps={inputProps}
-        renderSuggestionsContainer={renderSuggestionsContainer} />
+        renderSuggestionsContainer={renderSuggestionsContainer}/> 
+      <Search value={this.state.value}/>
+      <div id = "abc"> </div>
+      </header>
     );
+
+
   }
 }
 
