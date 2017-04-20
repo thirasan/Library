@@ -1,9 +1,15 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import App from './App';
-import './index.css';
+import React, { Component } from 'react'
+import { render } from 'react-dom'
+import { Router, Route, IndexRoute, browserHistory } from 'react-router'
+import Head from './components/Head'
+import Home from './components/Home'
+import App from './components/App'
 
-ReactDOM.render(
-  <App />,
-  document.getElementById('root')
-);
+render((
+  <Router history={browserHistory}>
+    <Route path='/' component={Head}>
+      <IndexRoute component={Home} />
+      <Route path='app' component={App} />
+    </Route>
+  </Router>
+), document.getElementById('root'))
