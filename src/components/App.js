@@ -1,11 +1,13 @@
 import React, { Component, PropTypes } from 'react';
+import { render } from 'react-dom'
 import Autosuggest from 'react-autosuggest';
 import axios from 'axios'
 import './App.css';
+import { Link } from 'react-router';
 
 const languages = [
   {
-    name: 'C',
+    name: 'Jon',
     year: 1972
   },
   {
@@ -79,25 +81,6 @@ const renderSuggestionsContainer = ({ containerProps, children, query }) => (
     }
   </div>
 );
-let Search = React.createClass({
-  handleClick() {
-    const ele = document.getElementById("abc")
-    axios.post('http://localhost:3943/', {
-    firstName: this.props.value,
-    lastName: 'Flintstone'
-    }).then(res => res.data).then((data) => {
-        ele.innerHTML = data[0].Surename;
-    })
-    // axios.get('http://localhost:3943/');
-  },
-  render: function() {
-      return (
-          <button onClick={(e) => this.handleClick(e)}>
-              Search
-          </button>
-      );
-  }
-});
 
 class App extends Component {
   constructor() {
@@ -137,18 +120,20 @@ class App extends Component {
     };
 
     return (
-      <header>
-      <Autosuggest 
-        suggestions={suggestions}
-        onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
-        onSuggestionsClearRequested={this.onSuggestionsClearRequested}
-        getSuggestionValue={getSuggestionValue}
-        renderSuggestion={renderSuggestion}
-        inputProps={inputProps}
-        renderSuggestionsContainer={renderSuggestionsContainer}/> 
-      <Search value={this.state.value}/>
-      <div id = "abc"> </div>
-      </header>
+        <header>
+        <Autosuggest 
+          suggestions={suggestions}
+          onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
+          onSuggestionsClearRequested={this.onSuggestionsClearRequested}
+          getSuggestionValue={getSuggestionValue}
+          renderSuggestion={renderSuggestion}
+          inputProps={inputProps}
+          renderSuggestionsContainer={renderSuggestionsContainer}/>
+          <ul>
+            <li><Link to='/app/search' value={this.state.value}><button>Search</button></Link></li>
+          </ul>
+        {this.props.children}
+        </header>
     );
 
 

@@ -5,7 +5,7 @@ class Home extends Component {
   render() {
     return (
       <h2 className={styles['title']}>
-        Library
+        Welcome to Library
       </h2>
     )
   }
