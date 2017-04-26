@@ -8,10 +8,15 @@ module.exports = {
   // ตรงจุดนี้สำคัญครับ! จุดเริ่มต้นของโปรแกรมเราคือ index.js
   // Dashboard.js หรือ Article.js จะเข้าถึงได้ก็ต้องผ่านไฟล์นี้
   // เราจึงบอกว่า index.js เป็น "entry" หรือทางเข้าถึงของโมดูลอื่น
-  entry: './src/index.js',
   entry: [
+    'react-hot-loader/patch',
+    'webpack-dev-server/client?http://localhost:8080',
+    'webpack/hot/only-dev-server',
     './src/theme/elements.scss',
     './src/index.js'
+  ],
+  plugins: [
+    new webpack.HotModuleReplacementPlugin()
   ],
   output: {
     publicPath: '/static/',
@@ -23,6 +28,7 @@ module.exports = {
   devServer: {
     contentBase: "./public",
     hot: true,
+    inline: false,
     historyApiFallback: true
   },
   module: {

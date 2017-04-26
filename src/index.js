@@ -1,15 +1,29 @@
 import React, { Component } from 'react'
 import { render } from 'react-dom'
-import { Router, Route, IndexRoute, browserHistory } from 'react-router'
-import Head from './components/Header/Head'
-import Home from './components/Home'
-import App from './components/App'
+import { AppContainer } from 'react-hot-loader'
+import Root from './Root'
 
-render((
-  <Router history={browserHistory}>
-    <Route path='/' component={Head}>
-      <IndexRoute component={Home} />
-      <Route path='app' component={App} />
-    </Route>
-  </Router>
-), document.getElementById('root'))
+const rootEl = document.getElementById('root')
+
+render(
+  <AppContainer>
+    <Root />
+  </AppContainer>,
+  rootEl
+)
+
+if (module.hot) {
+  // เมื่อไหร่ก็ตามที่โค๊ดภายใต้ Root รวมถึง subcomponent ภายใต้ Root
+  // มีการเปลี่ยนแปลง ให้ทำ HMR ด้วย Root ตัวใหม่
+  // ที่เราตั้งชื่อให้ว่า NextRootApp
+  module.hot.accept('./Root', () => {
+    const NextRootApp = require('./Root').default
+    
+    render(
+      <AppContainer>
+         <NextRootApp />
+      </AppContainer>,
+      rootEl
+    );
+  });
+}
