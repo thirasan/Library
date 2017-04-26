@@ -1,9 +1,8 @@
 import React, { Component, PropTypes } from 'react';
 import { render } from 'react-dom'
 import Autosuggest from 'react-autosuggest';
-import axios from 'axios'
 import './App.css';
-import { Link } from 'react-router';
+import Search from './Search';
 
 const languages = [
   {
@@ -129,10 +128,7 @@ class App extends Component {
           renderSuggestion={renderSuggestion}
           inputProps={inputProps}
           renderSuggestionsContainer={renderSuggestionsContainer}/>
-          <ul>
-            <li><Link to='/app/search' value={this.state.value}><button>Search</button></Link></li>
-          </ul>
-        {this.props.children}
+          <Search value={this.state.value}/>
         </header>
     );
 

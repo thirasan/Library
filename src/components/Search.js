@@ -1,14 +1,10 @@
 import React, { Component, PropTypes } from 'react';
-import { render } from 'react-dom'
-import axios from 'axios'
-import $ from 'jquery';
 import styles from './Search.scss'
+import axios from 'axios'
+import $ from 'JQuery';
 
-class Search extends Component{
-  state = {
-    data: []
-  }
-  componentWillMount() {
+export default class Search extends Component{
+  createTable (){
     axios.post('http://localhost:3943/', {
       firstName: this.props.value,
       lastName: 'Flintstone'
@@ -40,14 +36,15 @@ class Search extends Component{
       }
     })
   }
+  // componentWillMount() {
+  // }
   render() {
       return (
       <div>
+        <button onClick={(e) => this.createTable(e)}>Search</button>
         <table id="excelDataTable" className={styles['table']}>
         </table>
       </div>
       )
   }
 }
-
-export default Search

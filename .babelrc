@@ -1,4 +1,3 @@
-// เป็นการบอกว่าใช้ es2015, ใช้โหมด stage-0 ของ babel และให้แปลง react
 {
   "presets": ["es2015", "stage-0", "react"]
 }
