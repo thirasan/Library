@@ -3,6 +3,7 @@ import { render } from 'react-dom'
 import Autosuggest from 'react-autosuggest';
 import './App.css';
 import Search from './Search';
+import { Link } from 'react-router';
 
 const languages = [
   {
@@ -110,6 +111,7 @@ class App extends Component {
   };
 
   render() {
+    console.log(this.props.params.testvalue)
     const { value, suggestions } = this.state;
     const inputProps = {
       placeholder: "Fill in the blank",
@@ -117,7 +119,6 @@ class App extends Component {
       onChange: this.onChange,
       
     };
-
     return (
         <header>
         <Autosuggest 
@@ -129,6 +130,9 @@ class App extends Component {
           inputProps={inputProps}
           renderSuggestionsContainer={renderSuggestionsContainer}/>
           <Search value={this.state.value}/>
+          <ul>
+              <li><Link to={`/book/${this.state.value}`}>Create Idea</Link></li>
+          </ul>
         </header>
     );
 
