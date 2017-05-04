@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
 import { render } from 'react-dom'
 import Autosuggest from 'react-autosuggest';
 import './App.css';
@@ -111,7 +111,6 @@ class App extends Component {
   };
 
   render() {
-    console.log(this.props.params.testvalue)
     const { value, suggestions } = this.state;
     const inputProps = {
       placeholder: "Fill in the blank",
@@ -129,7 +128,10 @@ class App extends Component {
           renderSuggestion={renderSuggestion}
           inputProps={inputProps}
           renderSuggestionsContainer={renderSuggestionsContainer}/>
-          <Search value={this.state.value}/>
+          <Search user={this.props.params.user} value={this.state.value}/>
+          <ul>
+              <li><Link to={`/${this.props.params.user}/book/${this.state.value}`}>Book</Link></li>
+          </ul>
         </header>
     );
 

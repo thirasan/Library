@@ -1,0 +1,11 @@
+html {
+  font-family: 'Roboto', sans-serif;
+}
+
+body {
+  font-size: 35px;
+  line-height: 10px;
+  color: #F5F5F5;
+  background-image: url("assets/login-bg.jpg");
+
+}

@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router'
 import styles from './HeaderBar.scss'
+import $ from 'JQuery'
 
 export default class HeaderBar extends Component {
   render() {
@@ -8,14 +9,14 @@ export default class HeaderBar extends Component {
       <header className={styles['header']}>
         <nav>
           <Link
-            to={{ pathname: '/' }}
+            to={{ pathname: `/${this.props.user}` }}
             className={styles['brand']}>
             Library
           </Link>
           <ul className={styles['menu']}>
             <li className={styles['menu__item']}>
               <Link
-                to={{ pathname: '/app' }}
+                to={{ pathname: `/${this.props.user}/app` }}
                 className={styles['menu__link']}>
                 All pages
               </Link>

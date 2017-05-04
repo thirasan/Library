@@ -7,7 +7,7 @@ class Head extends Component {
   render() {
     return (
       <div>
-        <Header />
+        <Header user={this.props.params.user}/>
         <div className='container'>
           <div className={styles['content']}>
             {this.props.children}

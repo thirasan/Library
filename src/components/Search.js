@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
 import styles from './Search.scss'
 import axios from 'axios'
 import $ from 'JQuery';
@@ -38,7 +38,7 @@ export default class Search extends Component{
                     row$.append($('<td/>').html(cellValue));
                 else{
                     const buc = cellValue;
-                    const location = `/book/${buc}`;
+                    const location = `/${this.props.user}/book/${buc}`;
                     row$.append(`<td><a href=${location}>${buc}</a></td>`);
                 }
             }
