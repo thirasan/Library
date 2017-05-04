@@ -8,8 +8,6 @@ class Home extends Component {
         <h2 className={styles['title']}>
           Welcome to Library
         </h2>
-        <input type="text" name="firstname"/>
-        <button>Login</button>
       </div>
     )
   }

@@ -12,7 +12,6 @@ export default class HeaderBar extends Component {
             className={styles['brand']}>
             Library
           </Link>
-          <text>Guest</text>
           <ul className={styles['menu']}>
             <li className={styles['menu__item']}>
               <Link

@@ -130,9 +130,6 @@ class App extends Component {
           inputProps={inputProps}
           renderSuggestionsContainer={renderSuggestionsContainer}/>
           <Search value={this.state.value}/>
-          <ul>
-              <li><Link to={`/book/${this.state.value}`}>Create Idea</Link></li>
-          </ul>
         </header>
     );
 
