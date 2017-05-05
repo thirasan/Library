@@ -2,12 +2,24 @@ import React, { Component } from 'react';
 import styles from './Search.scss'
 import axios from 'axios'
 import $ from 'JQuery';
+import {bindActionCreators} from 'redux';
+import { connect } from 'react-redux'
+import * as actionCreators from '../actionCreators';
 
-export default class Search extends Component{
+function mapStateToProps(state) {  
+    return {
+        filters: state.get('filters')
+    };
+}
+
+export default connect(mapStateToProps)(class Search extends Component{
     createTable (){
-
     document.getElementById('body').innerHTML = '';
     document.getElementById('head').innerHTML = '';
+
+    for(let i=1;i<=this.props.filters.size;i++){
+        console.log(this.props.filters.get(i).get('value'))
+    }
 
     axios.get('http://localhost:3943/app', {
         firstName: this.props.value,
@@ -59,4 +71,4 @@ export default class Search extends Component{
         </div>
         )
     }
-}
+});

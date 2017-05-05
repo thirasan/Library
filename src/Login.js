@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import RaisedButton from 'material-ui/RaisedButton';
-import {deepOrange800} from 'material-ui/styles/colors';
+import { deepOrange800 } from 'material-ui/styles/colors';
 import darkBaseTheme from 'material-ui/styles/baseThemes/darkBaseTheme';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
@@ -9,12 +9,16 @@ import FlatButton from 'material-ui/FlatButton';
 import Dialog from 'material-ui/Dialog';
 import style from './Login.scss';
 import $ from 'JQuery';
-import {browserHistory} from 'react-router';
+import { browserHistory } from 'react-router';
 
 import injectTapEventPlugin from 'react-tap-event-plugin';
 
+function formatName(value) {
+  return value;
+}
+
 const customDialog = {
-  width: '25%',
+  width: '40%',
   maxWidth: 'none',
 };
 
@@ -31,57 +35,94 @@ const muiTheme = getMuiTheme({
   },
 });
 
+
 class Login extends Component {
-    componentWillMount() {
-        injectTapEventPlugin();
-    }
-    constructor(props, context) {
-        super(props, context);
+  componentWillMount() {
+    injectTapEventPlugin();
+  }
+  constructor(props, context) {
+    super(props, context);
 
-        this.state = {
-        open: false,
-        };
-    }
+    this.state = {
+      open: false,
+      value: ''
+    };
+    this.handleChange = this.handleChange.bind(this);
+  }
 
-    state = {
-        open: false,
-        };
+  state = {
+    open: false,
+  };
 
-        handleLogin = () => {
-            browserHistory.push(`/thirasan`);
-        };
+  handleChange(event) {
+    this.setState({ value: event.target.value });
+  }
 
-    render() {
 
-        return (
-            <div>
+  handleClose = () => {
+    this.setState({ open: false });
+    browserHistory.push(`/` + this.state.value);
+  };
+
+  handleLogin = () => {
+    this.setState({ open: true });
+  };
+
+  render() {
+
+    const actions = [
+      <FlatButton
+        label="Okay"
+        primary={true}
+        keyboardFocused={true}
+        onTouchTap={this.handleClose}
+      />,
+    ];
+
+
+
+    return (
+      <div>
         <MuiThemeProvider muiTheme={getMuiTheme(darkBaseTheme)}>
 
-            <div className={style['title']}>
+          <div className={style['title']}>
 
 
             <h1>Welcome To Library</h1>
 
-            
-            <TextField
-            hintText="Input ID Here"
-            name="id"
-            fullWidth={true}
-            label="Input ID Here"/>
-            <br/>
-            <RaisedButton
-            label="LOGIN"
-            secondary={true}
-            onTouchTap={this.handleLogin}
-            fullWidth={true}
-            />
 
-            </div>
+            <TextField
+              hintText="Input ID Here"
+              name="id"
+              fullWidth={true}
+              value={this.state.value}
+              onChange={this.handleChange} />
+            <br />
+            <RaisedButton
+              label="LOGIN"
+              secondary={true}
+              onTouchTap={this.handleLogin}
+              fullWidth={true}
+            />
+            <Dialog
+              title="Welcome"
+              actions={actions}
+              modal={false}
+              contentStyle={customDialog}
+              open={this.state.open}
+              onRequestClose={this.handleClose}
+            >
+              <h1>
+                Hello, {formatName(this.state.value)}!
+              </h1>
+            </Dialog>
+
+          </div>
 
         </MuiThemeProvider>
-        </div>
-        );
-    }
+      </div>
+    );
+  }
 }
 
 export default Login;

@@ -4,6 +4,10 @@ import Autosuggest from 'react-autosuggest';
 import './App.css';
 import Search from './Search';
 import { Link } from 'react-router';
+import {bindActionCreators} from 'redux';
+import {connect} from 'react-redux';
+import FilterList from './FilterList';
+import * as actionCreators from '../actionCreators';
 
 const languages = [
   {
@@ -111,6 +115,7 @@ class App extends Component {
   };
 
   render() {
+    const {selectedFields, availableFields, actions} = this.props;
     const { value, suggestions } = this.state;
     const inputProps = {
       placeholder: "Fill in the blank",
@@ -128,10 +133,9 @@ class App extends Component {
           renderSuggestion={renderSuggestion}
           inputProps={inputProps}
           renderSuggestionsContainer={renderSuggestionsContainer}/>
+
+          <FilterList />
           <Search user={this.props.params.user} value={this.state.value}/>
-          <ul>
-              <li><Link to={`/${this.props.params.user}/book/${this.state.value}`}>Book</Link></li>
-          </ul>
         </header>
     );
 
@@ -139,5 +143,9 @@ class App extends Component {
   }
 }
 
-export default App
+function mapDispatchToProps(dispatch) {
+  return {actions: bindActionCreators(actionCreators, dispatch)};
+}
+
+export default connect(mapDispatchToProps)(App);
 
