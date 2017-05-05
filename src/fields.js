@@ -3,10 +3,10 @@ import NumberWidget from './components/NumberWidget';
 import DateWidget from './components/DateWidget';
 import BooleanWidget from './components/BooleanWidget';
 import SelectWidget from './components/SelectWidget';
-import countries from './countries';
+import genre from './Genre';
 
 export const name = {name: 'name', displayName: 'Name', widget: StringWidget};
-export const age = {name: 'age', displayName: 'Age', widget: NumberWidget};
-export const dob = {name: 'dob', displayName: 'Date of birth', widget: DateWidget};
-export const married = {name: 'married', displayName: 'Married', widget: BooleanWidget};
-export const country = {name: 'country', displayName: 'Country', widget: SelectWidget, widgetOptions: {options: countries}};
+export const pagecount = {name: 'pagecount', displayName: 'Pagecount', widget: NumberWidget};
+export const dofp = {name: 'dofp', displayName: 'FirstPublished', widget: DateWidget};
+// export const married = {name: 'married', displayName: 'Married', widget: BooleanWidget};
+export const genres = {name: 'genres', displayName: 'Genre', widget: SelectWidget, widgetOptions: {options: genre}};
