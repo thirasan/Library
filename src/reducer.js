@@ -47,6 +47,7 @@ function removeFilter(state, filterId) {
 }
 
 function clearFilters(state) {
+  nextId = 0;
   return state.set('filters', emptyFilters);
 }
 
