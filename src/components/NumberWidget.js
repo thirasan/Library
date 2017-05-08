@@ -11,8 +11,7 @@ class NumberWidget extends DefaultWidget {
       [operators.GREATER_THAN_EQUALS]: '≥',
       [operators.LESS_THAN]: '<',
       [operators.LESS_THAN_EQUALS]: '≤',
-      [operators.BETWEEN]: 'between',
-      [operators.NOT_BETWEEN]: 'not between'
+      [operators.BETWEEN]: 'between'
     };
   }
 

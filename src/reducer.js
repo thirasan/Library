@@ -6,7 +6,7 @@ import * as operators from './operators';
 let nextId = 0;
 
 const emptyFilters = OrderedMap();
-const availableFields = Set([fields.name, fields.pagecount, fields.dofp, fields.genres]);
+const availableFields = Set([fields.member, fields.award, fields.pagecount, fields.dofp, fields.genres, fields.year, fields.runtime]);
 
 const initialState = Map({
   filters: emptyFilters,

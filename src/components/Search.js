@@ -33,7 +33,7 @@ export default connect(mapStateToProps)(class Search extends Component{
             for (var key in rowHash) {
                 if ($.inArray(key, columns) == -1){
                     columns.push(key);
-                    headerTr$.append($('<th/>').html(key));
+                        headerTr$.append($('<th/>').html(key));
                 }
             }
         }
@@ -45,14 +45,14 @@ export default connect(mapStateToProps)(class Search extends Component{
                 var cellValue = data[i][columns[colIndex]];
 
                 if (cellValue == null) { cellValue = ""; }
-                
-                if (colIndex != 0)
-                    row$.append($('<td/>').html(cellValue));
-                else{
+            
+                if (colIndex == 1){
                     const buc = cellValue;
-                    const location = `/${this.props.user}/book/${buc}`;
+                    const location = `/${this.props.user}/book/${data[i][columns[colIndex-1]]}`;
                     row$.append(`<td><a href=${location}>${buc}</a></td>`);
                 }
+                else
+                    row$.append($('<td/>').html(cellValue));
             }
             $("#excelDataTable").append(row$);
         }

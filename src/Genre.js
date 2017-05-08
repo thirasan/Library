@@ -2,7 +2,7 @@ export default [
   {value: 'Fantasy', key: 'Fastasy'},
   {value: 'Magic', key: 'Magic'},
   {value: 'Mystery', key: 'Mystery'},
-  {value: 'Crime', key: 'Horror'},
+  {value: 'Crime', key: 'Crime'},
   {value: 'Thriller', key: 'Thriller'},
   {value: 'Adult', key: 'Adult'},
   {value: 'Romance', key: 'Romance'},
