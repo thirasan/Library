@@ -19,16 +19,27 @@ export default class HeaderBar extends Component {
                 to={{ pathname: `/${this.props.user}/app` }}
                 className={styles['menu__link']}>
                 <span>
-                  All pages
+                  BOOK
                 </span>
               </Link>
             </li>
             <li className={styles['menu__item']}>
-              <a
-                href='#'
+              <Link
+                to={{ pathname: `/${this.props.user}/digital` }}
                 className={styles['menu__link']}>
-                About us
-              </a>
+                <span>
+                  DIGITAL MEDIA
+                </span>
+              </Link>
+            </li>
+                        <li className={styles['menu__item']}>
+              <Link
+                to={{ pathname: `/${this.props.user}/query` }}
+                className={styles['menu__link']}>
+                <span>
+                  Query
+                </span>
+              </Link>
             </li>
           </ul>
         </nav>

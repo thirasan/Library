@@ -8,6 +8,7 @@ import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import FilterList from './FilterList';
 import * as actionCreators from '../actionCreators';
+import * as fields from '../fields';
 
 const languages = [
   {
@@ -95,6 +96,15 @@ class App extends Component {
       suggestions: []
     };    
   }
+  componentWillMount(){
+    this.props.actions.unselectField(fields.year);
+    this.props.actions.unselectField(fields.runtime);
+  }
+  componentWillUnmount(){
+    this.props.actions.clearFilters();
+    this.props.actions.selectField(fields.year);
+    this.props.actions.selectField(fields.runtime);
+  }
 
   onChange = (event, { newValue, method }) => {
     this.setState({
@@ -143,9 +153,16 @@ class App extends Component {
   }
 }
 
+function mapStateToProps(state) {
+  return {
+    filters: state.get('filters'),
+    availableFields: state.get('availableFields')
+  };
+}
+
 function mapDispatchToProps(dispatch) {
   return {actions: bindActionCreators(actionCreators, dispatch)};
 }
 
-export default connect(mapDispatchToProps)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(App);
 

@@ -1,12 +1,13 @@
 import React, { Component } from 'react'
 import axios from 'axios'
+import $ from 'JQuery'
 
 class Book extends Component {
     constructor() {
         super();
 
         this.state = {
-            Name: 'kk'
+            Name: 'k'
         };
     }
     componentWillMount() {
@@ -23,6 +24,7 @@ class Book extends Component {
                     Loading
                 </div>
                 <div>{this.props.params.user}</div>
+                <img src={require(`./bookimages/${this.props.params.id}.jpg`)}/>
             </div>
         )
     }

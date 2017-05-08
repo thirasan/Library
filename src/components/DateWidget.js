@@ -9,8 +9,7 @@ class DateWidget extends DefaultWidget {
       [operators.EQUALS]: 'on',
       [operators.GREATER_THAN]: 'after',
       [operators.LESS_THAN]: 'before',
-      [operators.BETWEEN]: 'between',
-      [operators.NOT_BETWEEN]: 'not between'
+      [operators.BETWEEN]: 'between'
     };
   }
 

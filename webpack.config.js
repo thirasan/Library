@@ -33,6 +33,7 @@ module.exports = {
   },
   module: {
     loaders: [
+      { test: /\.(png|jpg)$/, loader: 'url-loader?limit=8192' },
       {
         test: /\.jsx?$/,
         exclude: /node_modules/,
