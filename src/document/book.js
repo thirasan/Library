@@ -7,7 +7,7 @@ class Book extends Component {
         super();
 
         this.state = {
-            Name: 'kk'
+            Name: 'k'
         };
     }
     componentWillMount() {
