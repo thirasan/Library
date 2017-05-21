@@ -32,7 +32,7 @@ export default class HeaderBar extends Component {
                 </span>
               </Link>
             </li>
-                        <li className={styles['menu__item']}>
+            <li className={styles['menu__item']}>
               <Link
                 to={{ pathname: `/${this.props.user}/query` }}
                 className={styles['menu__link']}>

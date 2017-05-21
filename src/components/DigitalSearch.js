@@ -16,14 +16,38 @@ export default connect(mapStateToProps)(class DigitalSearch extends Component{
     createTable (){
     document.getElementById('body').innerHTML = '';
     document.getElementById('head').innerHTML = '';
+    let runtime = '';
+    let year = '';
+    let runtimeState = '';
+    let yearState = '';
 
     for(let i=1;i<=this.props.filters.size;i++){
-        console.log(this.props.filters.get(i).get('value'))
+        if(this.props.filters.get(i).get('field').name == "runtime"){
+            runtime = this.props.filters.get(i).get('value')
+            if(this.props.filters.get(i).get('operator') == "GREATER_THAN_EQUALS"){
+                runtimeState = ">=";
+            }
+            else if(this.props.filters.get(i).get('operator') == "LESS_THAN_EQUALS"){
+                runtimeState = "<=";
+            }
+        }
+        if(this.props.filters.get(i).get('field').name == 'year'){
+            year = this.props.filters.get(i).get('value');
+            if(this.props.filters.get(i).get('operator') == "GREATER_THAN_EQUALS"){
+                yearState = ">=";
+            }
+            else if(this.props.filters.get(i).get('operator') == "LESS_THAN_EQUALS"){
+                yearState = "<=";
+            }
+        }
     }
 
-    axios.get('http://localhost:3943/digital', {
-        firstName: this.props.value,
-        lastName: 'Flintstone'
+    axios.post('http://localhost:3943/digital', {
+        text: this.props.value,
+        runtime: runtime,
+        year: year,
+        runtimeState: runtimeState,
+        yearState:  yearState
     }).then(res => res.data).then((data) => {
         var columns = [];
         var headerTr$ = $('<tr/>');
@@ -48,7 +72,7 @@ export default connect(mapStateToProps)(class DigitalSearch extends Component{
             
                 if (colIndex == 1){
                     const buc = cellValue;
-                    const location = `/${this.props.user}/book/${data[i][columns[colIndex-1]]}`;
+                    const location = `/${this.props.user}/digitalMedia/${data[i][columns[colIndex-1]]}`;
                     row$.append(`<td><a href=${location}>${buc}</a></td>`);
                 }
                 else
