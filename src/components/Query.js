@@ -44,12 +44,10 @@ class Query extends Component {
             { value: '2', label: 'Authors that born on the same date' },
             { value: '3', label: 'Total page count of Harry Potter series' },
             { value: '4', label: 'A member that has both book borrowing bill and digital media borrowing bill' },
-            { value: '5', label: 'A member that has both book borrowing bill and digital media borrowing bill(innerJoin version)' },
-            { value: '6', label: 'The book that has been borrowed the most' },
-            { value: '7', label: 'Join three tables' },
-            { value: '8', label: 'Digital media that aired between 2000 - 2010' },
+            { value: '5', label: 'The book that has been borrowed the most' },
+            { value: '6', label: 'Digital media that aired between 2000 - 2010' },
         ]
-        const defaultOption = {value: '0', label: 'Select Ultimate Query'}
+        const defaultOption = {value: '0', label: 'Most Frequence Search'}
         return (
         <div>
             <div><Dropdown options={options} onChange={this.handleChange} value={defaultOption} placeholder="Select an option" /></div>

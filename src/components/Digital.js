@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { render } from 'react-dom'
 import Autosuggest from 'react-autosuggest';
 import './App.css';
-import Search from './Search';
+import DigitalSearch from './DigitalSearch';
 import { Link } from 'react-router';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
@@ -151,7 +151,7 @@ class Digital extends Component {
           renderSuggestionsContainer={renderSuggestionsContainer}/>
           
           <FilterList />
-          <Search user={this.props.params.user} value={this.state.value}/>
+          <DigitalSearch user={this.props.params.user} value={this.state.value}/>
         </header>
     );
 

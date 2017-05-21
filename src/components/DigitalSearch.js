@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import styles from './Search.scss'
+import styles from './DigitalSearch.scss'
 import axios from 'axios'
 import $ from 'JQuery';
 import {bindActionCreators} from 'redux';
@@ -12,43 +12,18 @@ function mapStateToProps(state) {
     };
 }
 
-export default connect(mapStateToProps)(class Search extends Component{
+export default connect(mapStateToProps)(class DigitalSearch extends Component{
     createTable (){
     document.getElementById('body').innerHTML = '';
     document.getElementById('head').innerHTML = '';
 
-    let award = "";
-    let pagecount = "0";
-    let pagecountState = ">=";
-    let genres = "";
-
     for(let i=1;i<=this.props.filters.size;i++){
-        if(this.props.filters.get(i).get('field').name == "award"){
-            if(this.props.filters.get(i).get('operator') == "CONTAINS")
-                award = this.props.filters.get(i).get('value')
-        }
-        if(this.props.filters.get(i).get('field').name == "pagecount"){
-            if(this.props.filters.get(i).get('operator') == "GREATER_THAN_EQUALS") {
-                pagecount = this.props.filters.get(i).get('value')
-                pagecountState = ">="
-            } else if(this.props.filters.get(i).get('operator') == "LESS_THAN_EQUALS"){
-                pagecount = this.props.filters.get(i).get('value')
-                pagecountState = "<="
-            }
-        }
-        if(this.props.filters.get(i).get('field').name == "genres"){
-            for(let j = 0;j < this.props.filters.get(i).get('value').length ; j++){
-                genres+=(this.props.filters.get(i).get('value')[j]) + " ";
-            }
-        }
+        console.log(this.props.filters.get(i).get('value'))
     }
 
-    axios.post('http://localhost:3943/app', {
-        text: this.props.value,
-        award: award,
-        pagecountState: pagecountState,
-        pagecount: pagecount
-        
+    axios.get('http://localhost:3943/digital', {
+        firstName: this.props.value,
+        lastName: 'Flintstone'
     }).then(res => res.data).then((data) => {
         var columns = [];
         var headerTr$ = $('<tr/>');

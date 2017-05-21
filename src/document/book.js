@@ -12,7 +12,7 @@ class Book extends Component {
     }
     componentWillMount() {
         axios.get(`http://localhost:3943/book/${this.props.params.id}`).then(res => res.data).then((data) => {
-            this.state.Name = data[0].Author_Name;
+            this.state.Name = data[0].Author_ID;
             document.getElementById('body').innerHTML = this.state.Name;
         })
     }
