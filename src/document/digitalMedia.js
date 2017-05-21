@@ -58,7 +58,7 @@ class DigitalMedia extends Component {
                     Loading
                 </div>
                 <div>{"User : " + this.props.params.user}</div>
-                <button onClick={(e) => this.onBorrow(e)}>Search</button>
+                <button onClick={(e) => this.onBorrow(e)}>Borrow</button>
                 <img src={require(`./digitalmediaimages/${this.props.params.id}.jpg`)}/>
             </div>
         )
