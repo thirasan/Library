@@ -8,8 +8,8 @@ import TextField from 'material-ui/TextField';
 import FlatButton from 'material-ui/FlatButton';
 import Dialog from 'material-ui/Dialog';
 import style from './Login.scss';
-import $ from 'JQuery';
 import { browserHistory } from 'react-router';
+import axios from 'axios';
 
 import injectTapEventPlugin from 'react-tap-event-plugin';
 
@@ -61,7 +61,16 @@ class Login extends Component {
 
   handleClose = () => {
     this.setState({ open: false });
-    browserHistory.push(`/` + this.state.value);
+    let log = "User is not found";
+    axios.get('http://localhost:3943/member').then(res => res.data).then((data) => {
+            for(let i = 0;i<data.length;i++){
+              if(this.state.value == data[i].Member_ID){
+                  browserHistory.push(`/` + this.state.value);
+                  log = "Login as " + this.state.value
+              }
+            }
+            alert(log);
+    })
   };
 
   handleLogin = () => {
