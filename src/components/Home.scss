@@ -1,6 +1,15 @@
-.title {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+
+$border-style: 1px solid #1DF1EA;
+
+.table {
+    border-collapse: collapse;
+
+    th {
+        background-color: #4CAF50;
+        color: white;
+    }
+    table, th, td {
+        border: 1px solid black;
+    }
+
 }
