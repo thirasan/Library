@@ -15,6 +15,8 @@ class Home extends Component {
             var columns = [];
             var headerTr$ = $('<tr/>');
 
+            document.getElementById('memberName').innerHTML = data[0].MemberName;
+
             for (let i = 0 ; i < data.length ; i++) {
                 var rowHash = data[i];
                 for (var key in rowHash) {
@@ -53,6 +55,8 @@ class Home extends Component {
             var columns = [];
             var headerTr$ = $('<tr/>');
 
+            document.getElementById('memberName').innerHTML = data[0].MemberName;
+            
             for (let i = 0 ; i < data.length ; i++) {
                 var rowHash = data[i];
                 for (var key in rowHash) {
@@ -90,6 +94,9 @@ class Home extends Component {
   render() {
     return (
       <div>
+        <div id = "memberName">
+            Loading
+        </div>
         <table id="excelDataTable" className={styles['table']}>
             <thead id="head">
             </thead>
